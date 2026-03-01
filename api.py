@@ -5,6 +5,16 @@ from agent_core import run_analysis
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # temporary; lock down later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class AnalyzeRequest(BaseModel):
     task: str
     competitors: list[str]
